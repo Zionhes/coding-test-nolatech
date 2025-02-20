@@ -12,18 +12,13 @@ import { createEvaluationSchema } from "./evaluations.schema";
 const router = Router();
 
 // 📌 Get all evaluations
-router.get(
-  "/",
-  // authenticateToken,
-  // authorizeRoles("admin"),
-  getAllEvaluations,
-);
+router.get("/", authenticateToken, authorizeRoles("admin"), getAllEvaluations);
 
 // 📌 Create evaluations
 router.post(
   "/",
-  // authenticateToken,
-  // authorizeRoles("admin", "manager"),
+  authenticateToken,
+  authorizeRoles("admin", "manager"),
   validateRequest(createEvaluationSchema),
   createEvaluation,
 );
